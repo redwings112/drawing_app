@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="lib/p5.min.js"></script>
+    <script src="lib/p5.dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+
+
+    <script src="sketch.js"></script>
+
+    <!-- add extra scripts below -->
+    <script src="toolbox.js"></script>
+    <script src="colourPalette.js"></script>
+    <script src="helperFunctions.js"></script>
+
+    <script src="freehandTool.js"></script>
+    <script src="lineToTool.js"></script>
+    <script src="mirrorDrawTool.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+  	<div class="wrapper">
+      <div class="box header">My Drawing App>
+      <button id="clearButton">Clear</button>
+      <button id="saveImageButton">Save Image</button>
+      </div>
+	    <!-- Add a color picker element -->
+      <input type="color" id="colorPicker">
+      <div class="box" id="sidebar"></div>
+      <div id="content"></div>
+      <div class="box colourPalette"></div>
+      <div class="box options"></div>
+      <!-- Add this to your HTML file -->
+      <div>
+        <label for="thicknessSlider">Thickness: </label>
+         <input type="range" id="thicknessSlider" min="1" max="20" value="1">
+      </div>
+
+	  </div>
+	<script>
+
+        // JavaScript function to clear the canvas
+        function clearCanvas() {
+            background(255); // Clear the canvas by filling it with white
+        }
+
+        // Associate the clearCanvas function with the button click event
+        document.getElementById("clearButton").onclick = clearCanvas;
+		// JavaScript function to save the canvas as a PNG file
+        function saveImage() {
+            saveCanvas(canvas, 'mySketch', 'png'); // Save the canvas as 'mySketch.png'
+        }
+
+        // Associate the saveImage function with the "Save Image" button click event
+        document.getElementById("saveImageButton").onclick = saveImage;
+		 // JavaScript function to handle the background color change
+        function changeBackgroundColor() {
+            const newBackgroundColor = document.getElementById('colorPicker').value;
+            background(newBackgroundColor);
+        }
+
+        // Add an event listener to the color picker
+        document.getElementById('colorPicker').addEventListener('input', changeBackgroundColor);
+    </script>
+  </body>
+</html>
